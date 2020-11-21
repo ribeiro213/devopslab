@@ -1,4 +1,4 @@
-                                                                                                                                    # Linguagem Utilizada para Desenvolver a Aplicação                                                                                                
+# Linguagem Utilizada para Desenvolver a Aplicação                                                                                                
 language: python    
 
 # Versão que a aplicação suporta.                                                                                                                 
@@ -35,20 +35,3 @@ deploy:
       branch: main
                                                                                                                                                                            
                                                                                                                                                                                 
-
-# Instalação de Módulos que são necessários para a Aplicação.                                                                                                                                            
-install:                                                                                                                                                                                                 
-  - pip install flask                                                                                                                                                                                    
-
-# Defini o script de Teste que deve rodar toda vez que o código for alterado.                                                                                                                            
-script:                                                                                                                                                                                                  
-  - python -m unittest -v test
-
-# Definir o Deploy no Heroku
-deploy:
-  provider: heroku
-  api_key: $HEROKU_API_KEY
-  edge: true 
-  app: devopslab-ivan
-  on:
-      branch: main
