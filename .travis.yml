@@ -1,4 +1,5 @@
 # Linguagem Utilizada para Desenvolver a Aplicação                                                                                                
+
 language: python    
 
 # Versão que a aplicação suporta.                                                                                                                 
@@ -16,6 +17,7 @@ dist: xenial
 
 # Instalação de Módulos que são necessários para a Aplicação.                                                                                     
 install:     
+
   - pip install flask-wtf flask coverage 
 # Defini o script de Teste que deve rodar toda vez que o código for alterado.                                                                     
 script: 
