@@ -1,4 +1,4 @@
-# Linguagem Utilizada para Desenvolver a Aplicação                                                                                                
+#Linguagem Utilizada para Desenvolver a Aplicação                                                                                                
 
 language: python    
 
@@ -9,7 +9,7 @@ python:
 addons:
   sonarcloud:
     organization: ribeiro213
-    token: ${SONAR_TOKEN}
+    token: ${Lab_Devops}
 
 #Build Environments
 os: linux
@@ -49,5 +49,3 @@ notifications:
     on_success: always
     on_failure: always
     on_start: always
-
-
