@@ -16,8 +16,7 @@ dist: xenial
 
 # Instalação de Módulos que são necessários para a Aplicação.                                                                                     
 install:     
-  - pip install flask-wtf
-
+  - pip install flask-wtfi
 # Defini o script de Teste que deve rodar toda vez que o código for alterado.                                                                     
 script:     
   - python -m unittest -v test || travis_terminate 1;
