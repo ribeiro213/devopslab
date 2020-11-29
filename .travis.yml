@@ -9,8 +9,7 @@ python:
 addons:
   sonarcloud:
     organization: ribeiro213
-    token: ${Lab_Devops}
-
+    token: ${SONAR_TOKEN}
 #Build Environments
 os: linux
 dist: xenial
