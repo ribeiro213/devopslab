@@ -1,6 +1,6 @@
 # Laboratório DevOps
 
-
+[![Build Status](https://travis-ci.com/ribeiro213/devopslab.svg?branch=main)](https://travis-ci.com/ribeiro213/devopslab)
 
 [![Build Status](https://travis-ci.com/ribeiro213/validate.svg?branch=main)](https://travis-ci.com/ribeiro213/validate)
 
