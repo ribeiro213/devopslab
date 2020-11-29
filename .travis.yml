@@ -2,9 +2,11 @@
 
 language: python    
 
-# Versão que a aplicação suporta.                                                                                                                 
-python:     
-  - "3.7.9"     
+
+
+# Versão que a aplicação suporta.                                                                                                                                                                        
+python:                                                                                                                                                                                                  
+  - "3.7.9"   
 
 addons:
   sonarcloud:
@@ -12,23 +14,19 @@ addons:
     token: ${SONAR_TOKEN}
 
 
-#Build Environments
-os: linux
-dist: xenial
-
 # Instalação de Módulos que são necessários para a Aplicação.                                                                                     
 install:     
 
   - pip install flask-wtf flask coverage 
 
 
-# Defini o script de Teste que deve rodar toda vez que o código for alterado.                                                                     
-script: 
+# Defini o script de Teste que deve rodar toda vez que o código for alterado.
+script:
   - coverage run test.py || travis_terminate 1;
   - coverage report app.py || travis_terminate 1;
   - coverage xml app.py || travis_terminate 1;
   - sonar-scanner || travis_terminate 1;
-
+    
 
 # Definir o Deploy no Heroku
 deploy:
@@ -41,12 +39,3 @@ deploy:
       branch: main
                                                                                                                                                                            
 
-
-notifications:
-  webhooks:
-    urls:
-      - https://devopstools.rocket.chat/hooks/ZPTSwgDKSnv6kjB7T/Sgr8ESQAGymudtdi7jPvpjjty7iQCNB6Hcv3AewZG4czQNgj
-    secure: "BK37GMcS2Ya3p9BIJXElAjmRz8+EgtHnl75OFhEf2l2Yw68wfSm9Ay5gkm6QDKOAhdBGTSwTsFz5F/MXmh5ff6MmObGFMUfbG/pWFJYgayr4KAShKOuFJs8MXvmDkS89KV7Je5F8xImeG6PKoEKhgcBNOt04jPAu9mD5R3Z1d3YO2oERPgUkM0zBkUFgauGhq9QW+RP/W7u2bGQwAU9hkYyRuQQ6lFwlnpaNLX0LDNCnNOHNI/D8crAaAgcU5OrQhTm6MCvB0AjmBRQENLrHKPS2YvHz5sEHu7IgaN3s40xjqfTE8dUhYWZBD5Xw0avrrllDgIL0hIiEgMdHz8V5YBCVkQdBzV+1QaQVdu9l9Uo0K/hpeqAmE8guM/Nz1+SypsnPNXnWzPs2kUMyowsz1mkVZUEEKCTinABsqhUKM1kNlcDtm3V8Nf/wQmuDfgqOmTPOYOU+BFYT/zP7Ru7lvLWyvutlB4G6QFHKInvUq2YwNknjuRSdxDD+h5NeQgTsguAEPfVp2xLOdn+gjjqp0iN60e/fKo4GeQBNafsYyXsqKYyrJ+RFeXfDhWZ5O087++ItE4+1SthNQpCC9O1B0ayf4rhhbLYWJIwEiLa8/8yY2+KifYEGAu6D7YnlMC0GMqsgXIOf0GBbhyevLAK6doRHJ+LOLbToq769PcyLhjo="
-    on_success: always
-    on_failure: always
-    on_start: always
