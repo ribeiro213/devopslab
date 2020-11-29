@@ -10,6 +10,8 @@ addons:
   sonarcloud:
     organization: ribeiro213
     token: ${SONAR_TOKEN}
+    secure: 0696641bf63d955112378d2c0c151d3c33713b6b
+
 #Build Environments
 os: linux
 dist: xenial
