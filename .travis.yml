@@ -1,41 +1,44 @@
-#Linguagem Utilizada para Desenvolver a Aplicação                                                                                                
-
-language: python    
 
 
+# Linguagem Utilizada para Desenvolver a Aplicação                                                                                                                                                       
+language: python                                                                                                                                                                                         
 
 # Versão que a aplicação suporta.                                                                                                                                                                        
 python:                                                                                                                                                                                                  
-  - "3.7.9"   
+  - "3.7.9"                                                                                                                                                                                              
 
-addons:
-  sonarcloud:
-    organization: ribeiro213
-    token: ${SONAR_TOKEN}
+os: linux
+dist: xenial
 
+jobs:
+  include:
+    - stage: Testes
 
-# Instalação de Módulos que são necessários para a Aplicação.                                                                                     
-install:     
+      name: "Testes Unitarios"
+      # Instalação de Módulos que são necessários para a Aplicação.
+      install:
+        - pip install flask flask-wtf coverage
+      script:  # Defini o script de Teste que deve rodar toda vez que o código for alterado.
+        - coverage run test.py || travis_terminate 1;
+        - coverage report app.py || travis_terminate 1;
+        - coverage xml app.py || travis_terminate 1;
 
-  - pip install flask-wtf flask coverage 
+    - script:
+        - sonar-scanner || travis_terminate 1;
+      name: "Testes de Qualidade e Seguranca"
+      addons:
+        sonarcloud:
+          organization: ribeiro213
+          token: ${SONAR_TOKEN}
 
-
-# Defini o script de Teste que deve rodar toda vez que o código for alterado.
-script:
-  - coverage run test.py || travis_terminate 1;
-  - coverage report app.py || travis_terminate 1;
-  - coverage xml app.py || travis_terminate 1;
-  - sonar-scanner || travis_terminate 1;
-    
-
-# Definir o Deploy no Heroku
-deploy:
-  provider: heroku
-  strategy: api 
-  api_key: $HEROKU_API_KEY
-  edge: true 
-  app: devopslab-ivan                                                                                                             
-  on: 
-      branch: main
-                                                                                                                                                                           
-
+    - stage: Deploy
+      script: skip
+      # Definir o Deploy no Heroku
+      deploy:
+        provider: heroku
+        strategy: api
+        api_key: $HEROKU_API_KEY
+        edge: true
+        app: devopslab-ivan
+        on:
+          branch: main
